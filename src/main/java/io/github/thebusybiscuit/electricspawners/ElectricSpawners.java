@@ -30,7 +30,7 @@ public class ElectricSpawners extends JavaPlugin implements Listener, SlimefunAd
             new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/ElectricSpawners/master").start();
         }
 
-        ItemGroup itemGroup = new ItemGroup(new NamespacedKey(this, "electric_spawners"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("db6bd9727abb55d5415265789d4f2984781a343c68dcaf57f554a5e9aa1cd")), "&9Electric Spawners"));
+        ItemGroup itemGroup = new ItemGroup(new NamespacedKey(this, "electric_spawners"), CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("db6bd9727abb55d5415265789d4f2984781a343c68dcaf57f554a5e9aa1cd")), "&9Electric Spawners"));
         Research research = new Research(new NamespacedKey(this, "electric_spawners"), 4820, "Powered Spawners", 30);
 
         for (String mob : cfg.getStringList("mobs")) {

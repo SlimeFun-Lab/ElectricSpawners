@@ -44,9 +44,9 @@ public class ElectricSpawner extends SimpleSlimefunItem<BlockTicker> implements 
                 "&8\u21E8 &e\u26A1 &7512 J Buffer",
                 "&8\u21E8 &e\u26A1 &7240 J/Mob"
         ), RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                null, SlimefunItems.PLUTONIUM, null, 
-                SlimefunItems.ELECTRIC_MOTOR, new CustomItemStack(Material.SPAWNER, "&bReinforced Spawner", "&7Type: &b" + ChatUtils.humanize(type.toString())), SlimefunItems.ELECTRIC_MOTOR,
-                SlimefunItems.BLISTERING_INGOT_3, SlimefunItems.LARGE_CAPACITOR, SlimefunItems.BLISTERING_INGOT_3
+                null, SlimefunItems.PLUTONIUM.asOne(), null,
+                SlimefunItems.ELECTRIC_MOTOR.asOne(), CustomItemStack.create(Material.SPAWNER, "&bReinforced Spawner", "&7Type: &b" + ChatUtils.humanize(type.toString())), SlimefunItems.ELECTRIC_MOTOR.asOne(),
+                SlimefunItems.BLISTERING_INGOT_3.asOne(), SlimefunItems.LARGE_CAPACITOR.asOne(), SlimefunItems.BLISTERING_INGOT_3.asOne()
         });
         // @formatter:on
 
@@ -60,7 +60,7 @@ public class ElectricSpawner extends SimpleSlimefunItem<BlockTicker> implements 
             public void init() {
                 for (int i = 0; i < 9; i++) {
                     if (i != 4) {
-                        addItem(i, new CustomItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE, " "), (p, slot, item, action) -> false);
+                        addItem(i, CustomItemStack.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, " "), (p, slot, item, action) -> false);
                     }
                 }
             }
@@ -68,14 +68,14 @@ public class ElectricSpawner extends SimpleSlimefunItem<BlockTicker> implements 
             @Override
             public void newInstance(BlockMenu menu, Block b) {
                 if (!BlockStorage.hasBlockInfo(b) || BlockStorage.getLocationInfo(b.getLocation(), "enabled") == null || BlockStorage.getLocationInfo(b.getLocation(), "enabled").equals("false")) {
-                    menu.replaceExistingItem(4, new CustomItemStack(Material.GUNPOWDER, "&7Enabled: &4\u2718", "", "&e> Click to enable this Machine"));
+                    menu.replaceExistingItem(4, CustomItemStack.create(Material.GUNPOWDER, "&7Enabled: &4\u2718", "", "&e> Click to enable this Machine"));
                     menu.addMenuClickHandler(4, (p, slot, item, action) -> {
                         BlockStorage.addBlockInfo(b, "enabled", "true");
                         newInstance(menu, b);
                         return false;
                     });
                 } else {
-                    menu.replaceExistingItem(4, new CustomItemStack(Material.REDSTONE, "&7Enabled: &2\u2714", "", "&e> Click to disable this Machine"));
+                    menu.replaceExistingItem(4, CustomItemStack.create(Material.REDSTONE, "&7Enabled: &2\u2714", "", "&e> Click to disable this Machine"));
                     menu.addMenuClickHandler(4, (p, slot, item, action) -> {
                         BlockStorage.addBlockInfo(b, "enabled", "false");
                         newInstance(menu, b);
