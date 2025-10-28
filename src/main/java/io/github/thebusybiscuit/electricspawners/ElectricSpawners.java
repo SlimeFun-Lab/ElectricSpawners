@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.electricspawners;
 
 import java.util.logging.Level;
 
+import io.github.thebusybiscuit.electricspawners.utils.Utils;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
@@ -12,8 +13,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 
@@ -30,7 +29,7 @@ public class ElectricSpawners extends JavaPlugin implements Listener, SlimefunAd
             new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/ElectricSpawners/master").start();
         }
 
-        ItemGroup itemGroup = new ItemGroup(new NamespacedKey(this, "electric_spawners"), CustomItemStack.create(PlayerHead.getItemStack(PlayerSkin.fromHashCode("db6bd9727abb55d5415265789d4f2984781a343c68dcaf57f554a5e9aa1cd")), "&9Electric Spawners"));
+        ItemGroup itemGroup = new ItemGroup(new NamespacedKey(this, "electric_spawners"), CustomItemStack.create(Utils.fromBase64Hash("db6bd9727abb55d5415265789d4f2984781a343c68dcaf57f554a5e9aa1cd"), "&9Electric Spawners"));
         Research research = new Research(new NamespacedKey(this, "electric_spawners"), 4820, "Powered Spawners", 30);
 
         for (String mob : cfg.getStringList("mobs")) {
